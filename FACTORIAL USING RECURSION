@@ -1,0 +1,33 @@
+#include<iostream>
+
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+    int n;
+
+    cout<<"Enter the number:\n";
+
+    cin>>n;
+
+    int fact(int a);
+
+    cout<<fact(n);
+
+    return 0;
+
+}
+
+int fact(int a)
+{
+    if(a==0)
+
+        return 1;
+
+    else
+
+        return a*fact(a-1);
+
+}
