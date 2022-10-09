@@ -1,0 +1,31 @@
+#include<iostream>
+
+#include<string.h>
+
+using namespace std;
+
+int main()
+
+{
+
+    char a[50],b[50];
+
+    cout<<"Enter the string to check whether it is a palindrome \n";
+
+    cin>>a;
+
+    strcpy(b,a);    //copying string  a to string b
+
+    strrev(b);        //reversing the string b
+
+    if(strcmp(b,a)==0)    //now comparing both the strings
+
+        cout<<"Yes, it is palindrome";
+
+    else
+
+        cout<<"No, it is not  palindrome";
+
+    return 0;
+
+}
