@@ -1,0 +1,14 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    char a;
+    cout<<"Enter the Character: ";
+    cin>>a;
+    int b;
+    b=a;
+    cout<<"ASCII Code: "<<b;
+    return 0;
+}
