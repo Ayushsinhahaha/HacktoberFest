@@ -1,0 +1,25 @@
+void help(stack<int>& s){
+    if(s.empty())return;
+    int tp=s.top();
+    s.pop();
+    help(s);
+    if(s.empty()){
+        s.push(tp);
+    }
+    else{
+        vector<int> v;
+        while(!s.empty() && s.top()>tp){
+            v.push_back(s.top());
+            s.pop();
+        }
+        s.push(tp);
+        for(int i=v.size()-1;i>=0;i--){
+            s.push(v[i]);
+        }
+    }
+}
+void SortedStack :: sort()
+{
+   //Your code here
+   help(s);
+}
