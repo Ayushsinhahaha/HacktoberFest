@@ -1,0 +1,31 @@
+void help(vector<int>& res,int l,int r,int d){
+        if(l>r)return;
+        vector<int> dig;
+        int x=l,f=0;
+        while(x>0){
+            if(x%10==d){
+                f=1;
+                break;
+            }
+            dig.push_back(x%10);
+            x/=10;
+        }
+        if(!f){
+            int a=0;
+            for(int i=1;i<dig.size();i++){
+                if(dig[i]<=dig[i-1]){
+                    a=1;
+                    break;
+                }
+                dig[i]+=dig[i-1];
+            }
+            if(!a)res.push_back(l);
+        }
+        help(res,l+1,r,d);
+    }
+    vector<int> goodNumbers(int L, int R, int D) {
+        // code here
+        vector<int> res;
+        help(res,L,R,D);
+        return res;
+    }
