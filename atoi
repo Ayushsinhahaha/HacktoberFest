@@ -1,0 +1,16 @@
+ int help(string s,int n){
+        if(n==1)return s[0]-'0';
+        return 10*help(s,n-1)+s[n-1]-'0';
+    }
+    int atoi(string str) {
+        //Your code here
+       for(int i=0;i<str.length();i++)
+         if(isalpha(str[i]))
+           return -1;
+        if(!isdigit(str[0]) && !isdigit(str[1]))return -1;    
+        if(str[0]=='-'){
+            return -1*help(str.substr(1,str.length()),str.length()-1);
+        }   
+        else
+         return help(str,str.length());  
+    }
