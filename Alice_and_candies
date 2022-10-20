@@ -1,0 +1,56 @@
+// Problem: Alice and candies
+// Contest: HackerEarth - Math - Number Theory - Basic Number Theory-1
+// URL: https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/practice-problems/algorithm/lola-and-candies-36b57b1b/
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+ 
+#include<bits/stdc++.h>
+using namespace std;
+#define pfi(a) printf("%d ",a);
+#define pfl(a) printf("%lld ",a);
+#define pfin(a) printf("%d\n",a);
+#define pfln(a) printf("%lld\n",a);
+#define sfi(a) scanf("%d",&a);
+#define sfl(a) scanf("%lld",&a);
+#define f(i,a,b) for(ll i=a;i<b;i++)
+#define fb(i,b,a) for(ll i=b-1;i>=a;i--)
+#define ss second
+#define ff first
+#define mp(a,b) make_pair(a,b)
+#define pb(a) push_back(a);
+#define tc ll t;sfl(t);while(t--)
+#define ll long long
+#define mem(a,f) memset(a,false,sizeof(a));
+#define sor(v) sort(v.begin(),v.end());
+#define vi vector<int>
+#define vc vector<char>
+#define vl vector<ll>
+#define vpii vector<pair<int,int>>
+#define vpli vector<pair<ll,int>>
+#define vpll vector<pair<ll,ll>>
+#define mpii map<int,int>
+#define mpli map<ll,int>
+#define mpsi map<string ,int>
+#define endl "\n"
+int main()
+{
+ ll n;
+ sfl(n);
+ int cnt=0;
+ for(int i=1;i*i<=n;i++)
+ {
+   if(n%i==0)
+   {
+   	ll n1=i;
+    ll n2=n/i;
+    if(n1>=0 && n2>=0 && ((n1%2==0 && n2%2==0) || (n1%2 & n2%2)))	
+    {
+   	 cnt++;
+    }
+   }
+ }
+ pfin(cnt);
+ return 0;
+}

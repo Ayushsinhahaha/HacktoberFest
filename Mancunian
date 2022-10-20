@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pfi(a) printf("%d",a);
+#define pfl(a) printf("%lld",a);
+#define pfin(a) printf("%d\n",a);
+#define pfln(a) printf("%lld\n",a);
+#define sfi(a) scanf("%d",&a);
+#define sfl(a) scanf("%lld",&a);
+#define f(i,a,b) for(int i=a;i<b;i++)
+#define ll long long
+int arr[1000001]={0};
+int sum[1000001]={0};
+void ManPan()
+{
+ f(i,1,1000001)
+ {arr[0]=0;
+    int j=0,ar[7]={0},c=0,count=0;
+    int x=i;
+    while(x>0)
+    {
+      j=x%10;
+      ar[j]++;
+      x/=10;
+      count++;
+    }
+    f(i,1,count+1)
+       if(ar[i]==1)
+        c++;
+   
+    if(c==count)
+     arr[i]=1;
+    
+   sum[i]=arr[i]+sum[i-1]; 
+  
+ } 
+}
+int main()
+{
+    ManPan();
+    int t;
+    sfi(t);
+    for(int i=0;i<t;i++)
+    {
+     ll l,r;
+     sfi(l);
+     sfi(r);
+     cout<<sum[r]-sum[l-1]<<endl;
+    }
+}
