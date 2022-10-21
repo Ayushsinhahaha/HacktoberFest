@@ -1,0 +1,581 @@
+// C
+#ifndef _GLIBCXX_NO_ASSERT
+#include <cassert>
+#endif
+#include <cctype>
+#include <cerrno>
+#include <cfloat>
+#include <ciso646>
+#include <climits>
+#include <clocale>
+#include <cmath>
+#include <csetjmp>
+#include <csignal>
+#include <cstdarg>
+#include <cstddef>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <cwchar>
+#include <cwctype>
+
+#if __cplusplus >= 201103L
+#include <ccomplex>
+#include <cfenv>
+#include <cinttypes>
+// #include <cstdalign>
+#include <cstdbool>
+#include <cstdint>
+#include <ctgmath>
+// #include <cuchar>
+#endif
+
+// C++
+#include <algorithm>
+#include <bitset>
+#include <complex>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <streambuf>
+#include <string>
+#include <typeinfo>
+#include <utility>
+#include <valarray>
+#include <vector>
+
+#if __cplusplus >= 201103L
+#include <array>
+#include <atomic>
+#include <chrono>
+#include <codecvt>
+#include <condition_variable>
+#include <forward_list>
+#include <future>
+#include <initializer_list>
+#include <mutex>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
+#include <system_error>
+#include <thread>
+#include <tuple>
+#include <typeindex>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#endif
+
+#if __cplusplus >= 201402L
+#include <shared_mutex>
+#endif
+
+#if __cplusplus >= 201703L
+#include <any>
+//#include <charconv>
+// #include <execution>
+//#include <filesystem>
+//#include <optional>
+//#include <memory_resource>
+//#include <string_view>
+//#include <variant>
+#endif
+
+#if __cplusplus > 201703L
+#include <bit>
+// #include <compare>
+#include <concepts>
+#include <numbers>
+// #include <ranges>
+#include <span>
+#include <stop_token>
+// #include <syncstream>
+#include <version>
+#endif
+
+using namespace std;
+#define double long double
+#define int long long
+#define mod 1000000007
+//#define N 10000002
+#define INF 9223372036854775807
+#define endl "\n"
+/*....................................................................*/
+/**कर्म करो फल की चिंता मत करो **/
+int gcd(int a, int b){ if (b == 0) return a; return gcd(b, a % b); }
+/*........................................................................*/
+//int dp[200010][20];
+//void init(int n, int *b){
+//    const int limit = 19;
+//    for(int l=0; l<n; l++) dp[l][0] = b[l];
+//    for(int j=1; j<limit; j++){
+//        for(int l=0; l<n; l++){
+//            if((l + (1<<j) - 1) >= n) break;
+//            dp[l][j] = gcd(dp[l][j-1] , dp[l + (1<<(j-1))][j-1]);
+//        }
+//    }
+//}
+//int query(int l, int r){
+//    const int limit = 19;
+//    int ans = 0;
+//    int len = r - l + 1;
+//    for(int j=limit-1; j >= 0; j--){
+//        if((len >> j) & 1){
+//            ans = gcd(ans,dp[l][j]);
+//            l += (1<<j);
+//        }
+//    }
+//    return ans;
+//}
+/**................................**///
+//const int N = 20000000;
+//bool isPrime[N+1];
+//vector<int> prime;
+//void primes(){
+//    isPrime[1]=0;
+//    isPrime[0]=0;
+//    for(int i=2;i*i<=N;i++){
+//    if(isPrime[i]==1){
+//        for(int j=i*i;j<=N;j+=i){
+//            isPrime[j]=false;
+//        }
+//    }
+//    }
+//    for(int i=2; i<N; i++){
+//        if(isPrime[i])
+//            prime.push_back(i);
+//    }
+//}
+int power(int a, int b){
+    if(b == 1) return a;
+    if(b == 0) return 1;
+    int ans = power(a,b/2);
+    ans = (ans*ans);
+    if(b&1) ans = (ans * a);
+    return ans;
+}
+//int fact(int n){
+//    int ans = 1;
+//    for(int i=1; i<=n; i++)
+//        ans = (ans%mod * i%mod)%mod;
+//    return ans;
+//}
+//int ncr(int n,int r){
+//    return (fact(n)%mod * power(fact(n-r),mod-2)%mod * power(fact(r),mod-2)%mod)%mod;
+//}
+//struct custom_hash {
+//    static uint64_t splitmix64(uint64_t x) {
+//        // http://xorshift.di.unimi.it/splitmix64.c
+//        x += 0x9e3779b97f4a7c15;
+//        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+//        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+//        return x ^ (x >> 31);
+//    }
+//
+//    size_t operator()(uint64_t x) const {
+//        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+//        return splitmix64(x + FIXED_RANDOM);
+//    }
+//};
+//unordered_map<int,int, custom_hash> mp;
+//bool isPrime(int n){
+//    if(n == 1) return false;
+//    if(n == 2 || n == 3) return true;
+//    if(n%2 == 0 || n%3 == 0) return false;
+//    for(int i=5; i*i <= n; i += 6)
+//        if(n%i == 0 || n%(i+2) == 0) return false;
+//    return true;
+//}
+//using namespace std::chrono;
+//template<class clock, class units = milliseconds>
+//class Timer {
+//    const units T; const time_point<clock> t0; bool stopped = false;
+//public:
+//    inline Timer(const units interval) :  T(interval), t0(clock::now()) {}
+//    inline units elapsed_time() const { return duration_cast<units>(clock::now()-t0); }
+//    inline bool expired() { return stopped ? true: elapsed_time() < T ? false: (stopped = true); } };
+//const int N = 20000000;
+//bool isPrime[N+1];
+//vector<int> prime;
+//void primes(){
+//    isPrime[1]=0;
+//    isPrime[0]=0;
+//    for(int i=2;i*i<=N;i++){
+//    if(isPrime[i]==1){
+//        for(int j=i*i;j<=N;j+=i){
+//            isPrime[j]=false;
+//        }
+//    }
+//    }
+//    for(int i=2; i<N; i++){
+//        if(isPrime[i])
+//            prime.push_back(i);
+//    }
+//}
+
+/***********************factorial**********************/
+int fact[400010];
+int fact_inv[400010];
+int power(int x, int y, int p) {
+        int res = 1;
+        x = x % p;
+        while (y > 0) {
+            if (y & 1)
+                res = (res * x) % p;
+            y = y >> 1;
+            x = (x * x) % p;
+        }
+        return res;
+    }
+int mod_inv(int a, int m){
+    return power(a,m-2,m)%mod;
+}
+int ncr(int n, int r){
+    if(r > n) return 0;
+    return (fact[n]%mod*(fact_inv[r]%mod*fact_inv[n-r]%mod)%mod)%mod;
+}
+void pree(){
+    int N = 400010;
+    fact[0] = 1;
+    for(int i=1; i<N; i++){
+        fact[i] = (fact[i-1]%mod*i%mod)%mod;
+    }
+    fact_inv[N-1] = mod_inv(fact[N-1],mod)%mod;
+    for(int i=N-2; i>=0; i--){
+        fact_inv[i] = (fact_inv[i+1]%mod*(i+1)%mod)%mod;
+    }
+}
+/****************************/
+
+
+///segment tree
+//const int maxN = 100001;
+//int ar[maxN];
+//int st[4*maxN] , lazy[4*maxN];
+//
+//void build(int si , int ss , int se)
+//{
+//    if(ss == se)
+//    {
+//        st[si] = ar[ss];
+//        return;
+//    }
+//
+//    int mid = (ss + se) / 2;
+//
+//    build(2*si , ss , mid);
+//    build(2*si+1 , mid+1 , se);
+//
+//    st[si] = st[2*si] + st[2*si+1];
+//}
+//
+//int query(int si , int ss , int se , int qs , int qe)
+//{
+//    if(lazy[si] != 0)
+//    {
+//        int dx = lazy[si];
+//        lazy[si] = 0;
+//        st[si] += dx * (se - ss + 1);
+//
+//        if(ss != se)
+//        {lazy[2*si] += dx ; lazy[2*si+1] += dx;}
+//    }
+//
+//    if(ss > qe || se < qs) return 0;
+//
+//    if(ss >= qs && se <= qe)
+//    return st[si];
+//
+//    int mid = (ss + se) / 2;
+//    return query(2*si , ss , mid , qs , qe) + query(2*si+1 , mid+1 , se , qs , qe);
+//}
+//
+//void update(int si , int ss , int se , int qs , int qe , int val)
+//{
+//    if(lazy[si] != 0)
+//    {
+//        int dx = lazy[si];
+//        lazy[si] = 0;
+//        st[si] += dx * (se - ss + 1);
+//
+//        if(ss != se)
+//        {lazy[2*si] += dx ; lazy[2*si+1] += dx;}
+//    }
+//
+//    if(ss > qe || se < qs) return;
+//
+//    if(ss >= qs && se <= qe)
+//    {
+//        int dx = (se - ss + 1) * val;
+//        st[si] += dx;
+//
+//        if(ss != se)
+//        {lazy[2*si] += val ; lazy[2*si+1] += val;}
+//        return;
+//    }
+//
+//    int mid = (ss + se) / 2;
+//    update(2*si , ss , mid , qs , qe , val);
+//    update(2*si+1 , mid+1 , se , qs , qe , val);
+//
+//    st[si] = st[2*si] + st[2*si+1];
+//}
+//end
+//int higPowof2(int x)
+//{
+//    x |= x >> 1;
+//    x |= x >> 2;
+//    x |= x >> 4;
+//    x |= x >> 8;
+//    x |= x >> 16;
+//    return x ^ (x >> 1);
+//}
+//const int sz = 2;
+//struct Mat{
+//    int m[sz][sz];
+//    Mat(){
+//        memset(m,0,sizeof m);
+//    }
+//    void identity(){
+//        for(int i=0; i<sz; i++)
+//            m[i][i] = 1;
+//    }
+//    Mat operator* (Mat a){
+//        Mat res;
+//        for(int i=0; i<sz; i++){
+//            for(int j=0; j<sz; j++){
+//                for(int k=0; k<sz; k++){
+//                    res.m[i][j] += m[i][k]*a.m[k][j];
+//                    res.m[i][j] %= mod;
+//                }
+//            }
+//        }
+//        return res;
+//    }
+//};
+//int plant(int n){
+//    Mat res;
+//    res.identity();
+//    Mat T;
+//    T.m[0][0] = 3; T.m[0][1] = 1; T.m[1][0] = 1; T.m[1][1] = 3;
+//    if(n<=0) return 1;
+//    while(n){
+//        if(n&1) res = res*T;
+//        T = T*T;
+//        n /= 2;
+//    }
+//    return (res.m[0][0])%mod;
+//}
+//bool dfs(vector<vector<int>>& mat,int sum,int n, int m,int i, int j){
+//    if(i < 0 or j < 0 or i >= n or j >= m) return false;
+//    sum += mat[i][j];
+//    if(i == n-1 && j == m-1){
+//        if(sum == 0) return true;
+//        else return false;
+//    }
+//    return dfs(mat,sum,n,m,i+1,j) || dfs(mat,sum,n,m,i,j+1);
+//}
+//int f(string s){
+//    string r = s;
+//    r += "$";
+//    reverse(s.begin(), s.end());
+//    r += s;
+//    //longest proper prefix string
+//    int n = r.size(); int len = 0;
+//    vector<int> lps(n,0);
+//    int i = 1;
+//    while(i < n){
+//        if(r[i] == r[len]){
+//            len++;
+//            lps[i] = len;
+//            i++;
+//        }else{
+//            if(len == 0){
+//                lps[i] = 0;
+//                i++;
+//            }else{
+//                len = lps[len-1];
+//            }
+//        }
+//    }
+//    return lps[n-1];
+//}
+//int find_kro(vector<int> par, int i){
+//    if(par[i] != -1) return i;
+//    return par[i] = find_kro(par,par[i]);
+//}
+//trie
+//struct node{
+//    node* nxt[26];
+//    bool is_end;
+//    node(){
+//        for(int i=0; i<26; i++) nxt[i] = NULL;
+//        is_end = false;
+//    }
+//};
+//node *root;
+//void insert_trie(string& s){
+//    node *cur = root;
+//    for(int i=0; i<s.size(); i++){
+//        int imap = s[i] - 'a';
+//        //new node
+//        if(cur->nxt[imap] == NULL){
+//            cur->nxt[imap] = new node();
+//        }
+//        //goto that node
+//        cur = cur->nxt[imap];
+//    }
+//    //cur->last node
+//    cur->is_end = true;
+//}
+//bool search_trie(string& s){
+//    node *cur = root;
+//    for(int i=0; i<s.size(); i++){
+//        int imap = s[i] - 'a';
+//        if(cur->nxt[imap] == NULL) return false;
+//        cur = cur->nxt[imap];
+//    }
+//    return cur->is_end;
+//}
+//#include<bits/stdc++.h>
+//using namespace std;
+
+
+//void tokens(){
+//    //Tokenisation
+//    string input;
+//    getline(cin,input);
+//    //create a string stream object
+//    stringstream ss(input);
+//    string token;
+//    vector<string> tokens;
+//    while(ss >> token){
+//        tokens.push_back(token);
+//    }
+////    for(auto token : tokens){
+////        cout<<token<<",";
+////    }
+//    char *token2 = strtok((char*)input.c_str()," ");
+//    while(token2 != NULL){
+//        cout<<token2<<" ";
+//        token2 = strtok(NULL," ");
+//    }
+//
+//}
+
+//const int N = 1e5, M = 20;
+//
+//vector<int> gr[N];
+//int dep[N], Par[N][M];
+//
+//// O(N*M)
+//void dfs(int cur, int par) {
+//    dep[cur] = dep[par] + 1;
+//
+//    Par[cur][0] = par;
+//    for (int j = 1; j < M; j++) {
+//        Par[cur][j] = Par[Par[cur][j - 1]][j - 1];
+//    }
+//
+//    for (auto x : gr[cur]) {
+//        if (x != par) {
+//            dfs(x, cur);
+//        }
+//    }
+//}
+//
+//// O(M) = logN
+//int LCA(int u, int v) {
+//    if (u == v) return u;
+//    if (dep[u] < dep[v]) swap(u, v);
+//    int diff = dep[u] - dep[v];
+//    for (int j = M - 1; j >= 0; j--) {
+//        if ((diff >> j) & 1) {
+//            // jth bit of diff is set
+//            u = Par[u][j];
+//        }
+//    }
+//    // u and v are on the same level
+//    for (int j = M - 1; j >= 0; j--) {
+//        if (Par[u][j] != Par[v][j]) {
+//            u = Par[u][j];
+//            v = Par[v][j];
+//        }
+//    }
+//
+//    // Par[v][0]
+//    return Par[u][0];
+//}
+//
+//// O(1)
+//int LengthFromUtoV(int u, int v) {
+//    int lca = LCA(u, v);
+//    return dep[u] + dep[v] - 2 * dep[lca];
+//}
+
+
+
+void solve(){
+    int n; cin>>n;
+    if(n == 1 or n == 3){
+        cout<<"-1\n";
+        return;
+    }
+    cout<<n<<" "<<n-1<<" ";
+    for(int i=1; i<=n-2; i++) cout<<i<<" ";
+    cout<<"\n";
+}
+//int main(){
+//    solve();
+//}
+
+signed main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+//    for(int i=0; i<N; i++){
+//        isPrime[i] = true;
+//    }
+//    primes();
+    //dpree();
+    
+    int tt = 1; cin>>tt;
+    while(tt--){
+        solve();
+    }
+//    const seconds T = 15s;
+//        Timer<high_resolution_clock> timer(T);
+//        int iterations = 0;
+//        while (!timer.expired())
+//            iterations++;
+//        const double t = double(duration_cast<nanoseconds>(T).count())/iterations;
+//        cout << "average iteration time = " << t << " nsec.";
+    return 0;
+}
+
+
+
+
+//1 1 0 0 1 1 1 0 0  1 0   1  1 0  0
+//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
